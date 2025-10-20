@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festa-Flick - Explore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nav.css">
+      <style>
+        /* Enhanced Carousel */
+        .carousel {
+            padding-top: 100px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .carousel-item img {
+            height: 80vh;
+            object-fit: cover;
+            filter: brightness(0.6);
+            transition: var(--transition);
+        }
+
+        .carousel-item:hover img {
+            filter: brightness(0.5);
+        }
+
+        .carousel-caption {
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            max-width: 600px;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            /* border: 1px solid rgba(255, 255, 255, 0.2); */
+            box-shadow: var(--shadow);
+        }
+
+        .carousel-caption h5 {
+            /* color: var(--accent-gold); */
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .carousel-caption p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .explore-btn {
+            background: var(--accent-gold);
+            color: rgb(0,0,53);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255,204,0,0.3);
+            cursor: pointer;
+        }
+
+        .explore-btn:hover {
+            background: rgb(127, 143, 205);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,204,0,0.4);
+            color: rgb(0,0,53);
+            text-decoration: none;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-size: 50%;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        /* Festival Moments Section */
+        .fest-moments {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--secondary-bg), var(--primary-bg));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fest-moments::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,204,0,0.1)"/><circle cx="75" cy="75" r="0.5" fill="rgba(255,204,0,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .moments {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .moments h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px rgba(255,204,0,0.3);
+        }
+
+        .moments .pp {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .m-img {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .m-img img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .m-img img:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(255,204,0,0.2);
+        }
+
+        /* FAQ Section */
+        .option {
+            padding: 100px 0;
+            background: rgba(0,0,80,0.5);
+        }
+
+        .head {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .option .pp {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .accordion-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,204,0,0.2);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .accordion-item:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(255,204,0,0.1);
+        }
+
+        .accordion-button {
+            background: transparent;
+            color: var(--text-white);
+            font-weight: 600;
+            border: none;
+            border-radius: var(--border-radius);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--accent-gold);
+            color: rgb(0,0,53);
+            box-shadow: inset 0 -1px 0 rgba(255,204,0,0.2);
+        }
+
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.2rem rgba(255,204,0,0.25);
+            border-color: var(--accent-gold);
+        }
+
+        .accordion-body {
+            background: rgba(255,255,255,0.03);
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255,204,0,0.1);
+            padding: 1.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .animate-fade-in-up.animated {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 1;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-gold);
+            color: rgb(0,0,53);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(255,204,0,0.3);
+            display: none;
+        }
+
+        .back-to-top:hover {
+            background: #7279dd;;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,204,0,0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-bg) !important;
+            border-top: 1px solid rgba(255,204,0,0.2);
+            padding: 3rem 0 1rem;
+            color: var(--text-white);
+        }
+
+        .footer h3 {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer p, .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .social-icons a {
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-gold);
+            transform: scale(1.2);
+        }
+
+        .subscribe-form {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255,204,0,0.2);
+        }
+
+        .form-control-custom {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,204,0,0.3);
+            color: var(--text-white);
+            border-radius: var(--border-radius);
+        }
+
+        .form-control-custom:focus {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 0.2rem rgba(255,204,0,0.25);
+            color: var(--text-white);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            z-index: 10001;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+            box-shadow: var(--shadow);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success { background: #28a745; color: white; }
+        .notification.error { background: #dc3545; color: white; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .carousel { padding-top: 80px; }
+            .carousel-item img { height: 60vh; }
+            .carousel-caption {
+                max-width: 90%;
+                bottom: 10%;
+                padding: 1.5rem;
+            }
+            .carousel-caption h5 { font-size: 1.5rem; }
+            .moments h1 { font-size: 2.5rem; }
+            .head { font-size: 2rem; }
+            .m-img { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+            .m-img img { height: 200px; }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand img { height: 40px; }
+            .carousel-caption h5 { font-size: 1.2rem; }
+            .carousel-caption p { font-size: 1rem; }
+            .moments h1 { font-size: 2rem; }
+            .moments .pp { font-size: 1rem; }
+            .head { font-size: 1.5rem; }
+        }
+        .text{
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.jpg.png" alt="Festa-Flick" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="categories.html"><i class="fas fa-th me-1"></i>Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle me-1"></i>About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fas fa-home me-1"></i>Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog me-1"></i>Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="help.html"><i class="fas fa-question-circle me-1"></i>Help</a></li>
+                    <li class="nav-item"><a class="nav-link" href="team.html"><i class="fas fa-users me-1"></i>Team</a></li>
+                </ul>
+                <div class="ms-3 d-flex">
+                    <a href="buy.html" class="btn btn-primary-custom btn-sm me-2">
+                        <i class="fas fa-ticket-alt"></i> Buy Purchase
+                    </a>
+                    <a href="join.html" class="btn btn-primary-custom btn-sm">
+                        <i class="fas fa-users"></i> Join Community
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Carousel -->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-interval="8000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/gallery1.jpg.jpg" class="d-block w-100" alt="Muslim Festivals">
+                <div class="carousel-caption">
+                    <h5>Muslim Festivals:</h5>
+                    <p>Muslim festivals like Eid celebrate devotion, sacrifice, and compassion. Ramadan teaches self-control, while Eid brings people together in love, prayer, and generosity.</p>
+                    <button class="explore-btn" onclick="exploreFestival('muslim')">
+                        <i class="fas fa-search me-2"></i>Explore festival
+                    </button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="images/subs.jpg.jpeg" class="d-block w-100" alt="Christian Festivals">
+                <div class="carousel-caption">
+                    <h5>Christian Festivals:</h5>
+                    <p>Christian festivals like Christmas and Easter spread messages of hope, love, and peace. They honor Jesus Christ's life, inspiring kindness and faith worldwide.</p>
+                    <button class="explore-btn" onclick="exploreFestival('christian')">
+                        <i class="fas fa-search me-2"></i>Explore festival
+                    </button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="images/card3.jpg.jpeg" class="d-block w-100" alt="Hindu Festivals">
+                <div class="carousel-caption">
+                    <h5>Hindu Festivals:</h5>
+                    <p>Hindu festivals like Diwali and Holi celebrate light, color, and tradition. Each festival tells a spiritual story and unites families in joyful rituals.</p>
+                    <button class="explore-btn" onclick="exploreFestival('hindu')">
+                        <i class="fas fa-search me-2"></i>Explore festival
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Festival Moments Section -->
+    <section class="fest-moments animate-fade-in-up">
+        <div class="container">
+            <div class="moments">
+                <h1><i class="fas fa-globe-americas me-3"></i>A world of festival moments</h1>
+                <p class="pp">Step into our vibrant gallery and relive the magic of festivals from every corner of the globe. Each photo captures the laughter, colors, and traditions that bring us together—inviting you to celebrate, discover, and feel inspired by the spirit of community.</p>
+                <div class="m-img">
+                    <img src="images/bakra eid.jpg" alt="Festival Moment 1" loading="lazy">
+                    <img src="images/gallery img24.jpg" alt="Festival Moment 2" loading="lazy">
+                    <img src="images/diwali.jpeg" alt="Festival Moment 3" loading="lazy">
+                    <img src="images/hero.jpg.jpeg" alt="Festival Moment 4" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="option animate-fade-in-up" style="animation-delay: 0.2s">
+        <div class="container">
+            <h2 class="head"><i class="fas fa-question-circle me-3"></i>Your festival FAQs, simplified</h2>
+            <p class="pp">Get quick answers to your most common festival questions, from traditions to participation and more.</p>
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            <i class="fas fa-star me-2"></i>What makes a festival special?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            A festival is a joyful gathering rooted in tradition, history, or belief. People celebrate to honor culture, connect with others, and create lasting memories together.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                            <i class="fas fa-calendar-alt me-2"></i>How are festival dates chosen?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Dates are set by religious calendars, lunar cycles, or historical events. Some are fixed, while others shift each year based on tradition or astronomy.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                            <i class="fas fa-users me-2"></i>Can I join any festival?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Yes! Most festivals welcome everyone. Participating is a wonderful way to experience new cultures, meet people, and celebrate together.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                            <i class="fas fa-images me-2"></i>Where can I see festival photos?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Visit our gallery for colorful festival images and check each festival's page for stories, dates, and downloadable guides.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up">
+                    <h3><i class="fas fa-fire me-2"></i>Festa-Flick</h3>
+                    <p>Connecting cultures through celebration. Discover, experience, and share the world's festivals.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook-f fs-5"></i></a>
+                        <a href="#"><i class="fab fa-twitter fs-5"></i></a>
+                        <a href="#"><i class="fab fa-instagram fs-5"></i></a>
+                        <a href="#"><i class="fab fa-youtube fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.1s">
+                    <h3>Categories</h3>
+                    <a href="categories.html" class="footer-link">Christian Festivals</a>
+                    <a href="categories.html" class="footer-link">Hindu Festivals</a>
+                    <a href="categories.html" class="footer-link">Muslim Festivals</a>
+                    <a href="categories.html" class="footer-link">Buddhist Festivals</a>
+                    <a href="categories.html" class="footer-link">Jewish Festivals</a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.2s">
+                    <h3>Explore</h3>
+                    <a href="gallery.html" class="footer-link">Gallery</a>
+                    <a href="blog.html" class="footer-link">Blog</a>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="help.html" class="footer-link">Contact</a>
+                    <a href="team.html" class="footer-link">Our Team</a>
+                </div>
+               <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.3s">
+                    <h3>Stay Connected</h3>
+                    <p class="small">Get festival updates, stories, and exclusive content.</p>
+                    <div class="subscribe-form">
+                        <div class="input-group">
+                            </div>
+                            <input type="email" class="form-control form-control-custom" placeholder="Your email" id="newsletterEmail">
+                            <button class="btn btn-primary-custom" type="button" id="subscribeBtn">
+                                <i class="fas fa-paper-plane me-1"></i>Subscribe
+                            </button>
+                        <div class="form-text mt-2">No spam, just festival magic!</div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,204,0,0.2);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Festa-Flick. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        (function($, window, document) {
+            'use strict';
+
+            // Global functions
+            window.exploreFestival = function(type) {
+                showNotification(`Exploring ${type} festivals... Coming soon!`, 'success');
+                // Navigate to categories or specific festival page
+                // window.location.href = `categories.html?type=${type}`;
+            };
+
+            // Core initialization
+            function init() {
+                hideLoadingScreen();
+                initCarousel();
+                initEventListeners();
+                initScrollEffects();
+                initAnimations();
+                initNewsletter();
+            }
+
+            function hideLoadingScreen() {
+                setTimeout(() => {
+                    $('#loading').fadeOut(500);
+                }, 2000);
+            }
+
+            function initCarousel() {
+                const carousel = new bootstrap.Carousel(document.querySelector('#carouselExampleDark'), {
+                    interval: 8000,
+                    wrap: true,
+                    pause: 'hover'
+                });
+
+                // Auto-rotate indicators
+                setInterval(() => {
+                    const activeIndicator = $('.carousel-indicators .active');
+                    const nextIndicator = activeIndicator.next();
+                    if (nextIndicator.length) {
+                        nextIndicator.click();
+                    } else {
+                        $('.carousel-indicators button:first').click();
+                    }
+                }, 8000);
+            }
+
+            function initEventListeners() {
+                // Back to top
+                $('#backToTop').on('click', function() {
+                    $('html, body').animate({scrollTop: 0}, 800);
+                });
+
+                // Explore buttons
+                $('.explore-btn').on('click', function() {
+                    const festivalType = $(this).data('type') || 'festivals';
+                    showNotification(`Discovering ${festivalType}...`, 'success');
+                });
+
+                // Image hover effects
+                $('.m-img img').hover(
+                    function() {
+                        $(this).css({
+                            'transform': 'translateY(-10px) scale(1.02)',
+                            'filter': 'brightness(1.1)'
+                        });
+                    },
+                    function() {
+                        $(this).css({
+                            'transform': 'translateY(0) scale(1)',
+                            'filter': 'brightness(1)'
+                        });
+                    }
+                );
+
+                // Navbar active state
+                $('.navbar-nav .nav-link').on('click', function() {
+                    $('.navbar-nav .nav-link').removeClass('active');
+                    $(this).addClass('active');
+                });
+
+                // Newsletter subscription
+                $('#subscribeBtn').on('click', function() {
+                    const email = $('#newsletterEmail').val().trim();
+                    if (email && isValidEmail(email)) {
+                        $('#newsletterEmail').val('').removeClass('is-invalid');
+                        const $btn = $(this);
+                        $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i>Subscribing...');
+                        
+                        setTimeout(() => {
+                            $btn.prop('disabled', false).html('<i class="fas fa-check me-1"></i>Subscribed!');
+                            showNotification('Welcome to the festival community! 🎉', 'success');
+                            setTimeout(() => {
+                                $btn.html('<i class="fas fa-paper-plane me-1"></i>Subscribe');
+                            }, 2000);
+                        }, 1500);
+                    } else {
+                        $('#newsletterEmail').addClass('is-invalid');
+                        showNotification('Please enter a valid email address!', 'error');
+                    }
+                });
+
+                // Smooth scrolling
+                $('a[href^="#"]').on('click', function(event) {
+                    const target = $($(this).attr('href'));
+                    if (target.length) {
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 90
+                        }, 1000, 'easeInOutQuad');
+                    }
+                });
+
+                // Keyboard navigation for carousel
+                $(document).on('keydown', function(e) {
+                    if (e.key === 'ArrowLeft') {
+                        $('.carousel-control-prev').click();
+                    } else if (e.key === 'ArrowRight') {
+                        $('.carousel-control-next').click();
+                    }
+                });
+            }
+
+            function initScrollEffects() {
+                $(window).on('scroll', function() {
+                    const scrollTop = $(this).scrollTop();
+                    
+                    // Navbar scroll effect
+                    $('.navbar').toggleClass('scrolled', scrollTop > 100);
+                    $('#backToTop').toggle(scrollTop > 300);
+                    
+                    // Animate on scroll
+                    $('.animate-fade-in-up').each(function() {
+                        const elementTop = $(this).offset().top;
+                        const windowBottom = scrollTop + $(window).height();
+                        if (windowBottom > elementTop + 100 && !$(this).hasClass('animated')) {
+                            $(this).addClass('animated');
+                        }
+                    });
+
+                    // Parallax effect for carousel images
+                    $('.carousel-item img').css('transform', `translateY(${scrollTop * 0.5}px)`);
+                });
+            }
+
+            function initAnimations() {
+                $('.animate-fade-in-up').each(function(i) {
+                    $(this).css('animation-delay', (i * 0.2) + 's');
+                });
+                
+                setTimeout(() => {
+                    $('.animate-fade-in-up').addClass('animated');
+                }, 500);
+            }
+
+            function initNewsletter() {
+                $('#newsletterEmail').on('input', function() {
+                    $(this).removeClass('is-invalid');
+                });
+            }
+
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            function showNotification(message, type = 'success') {
+                const $notification = $(`
+                    <div class="notification ${type} show">
+                        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'} me-2"></i>
+                        ${message}
+                        <button type="button" class="btn-close ms-3" style="color: white; opacity: 0.7; border: none; background: none; font-size: 1.2rem; cursor: pointer;">×</button>
+                    </div>
+                `);
+                
+                $('body').append($notification);
+                
+                $notification.find('.btn-close').on('click', function() {
+                    $notification.removeClass('show').fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                });
+                
+                setTimeout(() => {
+                    $notification.removeClass('show').fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                }, 4000);
+            }
+
+            // Window resize handler
+            $(window).on('resize', function() {
+                $('.animate-fade-in-up').removeClass('animated');
+                initAnimations();
+            });
+
+            // Initialize everything when DOM is ready
+            $(document).ready(init);
+
+        })(jQuery, window, document);
+    </script>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Festival</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link rel="stylesheet" href="nav.css">
+  <style>
+/* === Hero / Mission Section === */
+.over-mission {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(to right, #5768ae,  #5768ae);
+  color: var(--text-white);
+  transition: var(--transition);
+}
+
+.over-mission h1 {
+  color: var(--neutral-gray);
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.over-mission .slogan {
+  color: var(--accent-teal);
+  margin: 15px 0;
+  font-size: 1.2rem;
+}
+
+.over-mission .content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+  line-height: 1.7;
+  color: var(--text-white);
+}
+
+/* === About Cards === */
+.about-c {
+  background: var(--primary-dark);
+  padding: 80px 20px;
+}
+
+.container-about {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.a-card {
+  background: #1f2a6c;
+  border-radius: 20px;
+  width: 270px;
+  padding: 25px;
+  text-align: center;
+  color: var(--neutral-gray);
+  transition: var(--transition);
+}
+
+.a-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px var(--accent-teal);
+}
+
+.a-card .icon {
+  font-size: 2.2rem;
+  color: var(--accent-teal);
+  margin-bottom: 10px;
+}
+
+/* === Values Section === */
+.value {
+  padding: 80px 20px;
+  background: linear-gradient(to right, #5768ae,  #99a3d6);
+  text-align: center;
+  color: var(--text-white);
+}
+
+.a-values h2 {
+  color: var(--neutral-gray);
+  margin-bottom: 25px;
+}
+
+.a-values ul {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
+  margin: auto;
+  text-align: left;
+}
+
+.a-values li {
+  margin: 20px 0;
+  font-size: 1rem;
+}
+
+.a-values strong {
+  color: var(--accent-teal);
+}
+
+/* === Footer === */
+footer {
+  background-color:  #5768ae;
+  padding: 50px 30px;
+  color: var(--neutral-gray);
+}
+
+footer h3 {
+  color: var(--accent-teal);
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer li {
+  margin-bottom: 8px;
+  transition: var(--transition);
+}
+
+footer li:hover {
+  color: var(--accent-teal);
+  cursor: pointer;
+}
+
+        .subscribe-form {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255,204,0,0.2);
+        }
+
+        .form-control-custom {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,204,0,0.3);
+            color: var(--text-white);
+            border-radius: var(--border-radius);
+        }
+
+        .form-control-custom:focus {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 0.2rem rgba(255,204,0,0.25);
+            color: var(--text-white);
+        }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 30px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-bottom a {
+  color: var(--accent-teal);
+  text-decoration: none;
+}
+
+.social-icons a {
+  color: var(--neutral-gray);
+  margin-left: 10px;
+  transition: var(--transition);
+}
+
+.social-icons a:hover {
+  color: var(--accent-teal);
+}
+
+/* === Responsive Design === */
+@media (max-width: 992px) {
+  .navbar-nav {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .a-card {
+    width: 80%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .over-mission {
+    padding: 70px 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand img {
+    height: 40px;
+  }
+
+  .btn-primary-custom {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .a-card {
+    width: 100%;
+  }
+}
+.over-mission{
+  margin-top: 50px;
+}
+        .footer {
+            background: var(--primary-bg) !important;
+            border-top: 1px solid rgba(255,204,0,0.2);
+            padding: 3rem 0 1rem;
+            color: var(--text-white);
+        }
+
+        .footer h3 {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer p,
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .social-icons a {
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-gold);
+            transform: scale(1.2);
+        }
+
+        .subscribe-form {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255,204,0,0.2);
+        }
+
+        .form-control-custom {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,204,0,0.3);
+            color: var(--text-white);
+            border-radius: var(--border-radius);
+        }
+
+        .form-control-custom:focus {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 0.2rem rgba(255,204,0,0.25);
+            color: var(--text-white);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+            box-shadow: var(--shadow);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: #28a745;
+            color: white;
+        }
+
+        .notification.error {
+            background: #dc3545;
+            color: white;
+        }
+  </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.jpg.png" alt="Festival Hub" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="categories.html"><i class="fas fa-th me-1"></i>Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle me-1"></i>About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog me-1"></i>Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="help.html"><i class="fas fa-question-circle me-1"></i>Help</a></li>
+                    <li class="nav-item"><a class="nav-link" href="team.html"><i class="fas fa-users me-1"></i>Team</a></li>
+                </ul>
+                <div class="ms-3" style="display: flex;">
+                    <a href="buy.html" class="btn btn-primary-custom btn-sm me-2">
+                        <i class="fas fa-ticket-alt"></i> Buy Purchase
+                    </a>
+                     <a href="join.html" class="btn btn-primary-custom btn-sm me-2">
+                        <i class="fas fa-users"></i> Join Community
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+  <!-- === MAIN CONTENT === -->
+  <section class="over-mission">
+    <h1>About Festivals.com</h1>
+    <div class="slogan">Celebrating diversity, one festival at a time</div>
+    <div class="content">
+      <h2>Our Mission</h2>
+      <p>
+        At Festivals.com, we believe that festivals are more than just celebrations—they are windows into the rich tapestry of human culture, tradition, and spirituality. Our mission is to bring the world’s diverse festivals to your fingertips, fostering understanding, appreciation, and unity across cultures.
+      </p>
+      <p>
+        We strive to provide comprehensive, accurate, and engaging information about festivals from all religions and cultures, helping people around the world learn about and celebrate the beautiful diversity of human traditions.
+      </p>
+    </div>
+  </section>
+
+  <section class="about-c">
+    <div class="container-about">
+      <div class="a-card">
+        <div class="icon"><i class="fa-regular fa-heart"></i></div>
+        <h2>Our Passion</h2>
+        <p>We are passionate about preserving and sharing the stories, traditions, and joy of festivals worldwide.</p>
+      </div>
+      <div class="a-card">
+        <div class="icon"><i class="fa-solid fa-users"></i></div>
+        <h2>Our Community</h2>
+        <p>Join thousands of festival enthusiasts who celebrate diversity and cultural heritage together.</p>
+      </div>
+      <div class="a-card">
+        <div class="icon"><i class="fa-solid fa-globe"></i></div>
+        <h2>Global Reach</h2>
+        <p>Covering festivals from every continent and culture, bringing the world to you.</p>
+      </div>
+      <div class="a-card">
+        <div class="icon"><i class="fa-solid fa-star-of-life"></i></div>
+        <h2>Quality Content</h2>
+        <p>Thoroughly researched and beautifully presented information about each festival.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="value">
+    <div class="a-values">
+      <h2>Our Values</h2>
+      <ul>
+        <li><strong>Respect</strong><br />We honor all traditions and beliefs with the utmost respect and sensitivity.</li>
+        <li><strong>Accuracy</strong><br />We ensure all information is thoroughly researched and verified.</li>
+        <li><strong>Inclusivity</strong><br />We celebrate all cultures and religions equally, promoting understanding and unity.</li>
+        <li><strong>Education</strong><br />We believe in the power of knowledge to bridge cultural divides.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- === FOOTER === -->
+  <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up">
+                    <h3><i class="fas fa-fire me-2"></i>Festa-Flick</h3>
+                    <p>Connecting cultures through celebration. Discover, experience, and share the world's festivals.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook-f fs-5"></i></a>
+                        <a href="#"><i class="fab fa-twitter fs-5"></i></a>
+                        <a href="#"><i class="fab fa-instagram fs-5"></i></a>
+                        <a href="#"><i class="fab fa-youtube fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up">
+                    <h3>Categories</h3>
+                    <a href="categories.html" class="footer-link">Christian Festivals</a>
+                    <a href="categories.html" class="footer-link">Hindu Festivals</a>
+                    <a href="categories.html" class="footer-link">Muslim Festivals</a>
+                    <a href="categories.html" class="footer-link">Buddhist Festivals</a>
+                    <a href="categories.html" class="footer-link">Jewish Festivals</a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up">
+                    <h3>Explore</h3>
+                    <a href="gallery.html" class="footer-link">Gallery</a>
+                    <a href="blog.html" class="footer-link">Blog</a>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="help.html" class="footer-link">Contact</a>
+                    <a href="team.html" class="footer-link">Our Team</a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up">
+                    <h3>Stay Connected</h3>
+                    <div class="subscribe-form">
+                        <div class="input-group">
+                              </div>
+                            <input type="email" class="form-control form-control-custom" placeholder="Your email" id="newsletterEmail">
+                            <button class="btn btn-primary-custom" type="button" id="subscribeBtn">
+                                <i class="fas fa-paper-plane me-1"></i>Subscribe
+                            </button>
+                        </div>
+                        <div class="form-text mt-2">No spam, just festival magic!</div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,204,0,0.2);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Festa-Flick. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <!-- === JavaScript Effects === -->
+  <script>
+
+
+    // Navbar color change on scroll
+    // window.addEventListener("scroll", function() {
+      //const header = document.querySelector("header");
+      //if (window.scrollY > 70) header.classList.add("scrolled");
+      //else header.classList.remove("scrolled");
+    //});
+    
+
+    // Subscribe button confirmation
+    document.getElementById("subBtn").addEventListener("click", function() {
+      const email = document.getElementById("subEmail").value.trim();
+      if (email === "") {
+        alert("⚠️ Please enter your email before subscribing.");
+      } else {
+        const confirmSub = confirm("Do you want to subscribe?");
+        if (confirmSub) {
+          alert("🎉 Thank you for subscribing!");
+          document.getElementById("subEmail").value = "";
+        }
+      }
+    });
+
+    // Section fade-in animation on scroll
+    const sections = document.querySelectorAll("section");
+    function revealOnScroll() {
+      const triggerBottom = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < triggerBottom) {
+          section.style.transition = "transform 1s ease, opacity 1s ease";
+          section.style.transform = "translateY(0)";
+          section.style.opacity = 1;
+        } else {
+          section.style.transform = "translateY(80px)";
+          section.style.opacity = 0;
+        }
+      });
+    }
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+  </script>
+</body>
+</html>

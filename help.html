@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festa-Flick</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        .btn-outline-light {
+            color: var(--text-white) !important;
+            border-color: var(--text-white);
+            transition: var(--transition);
+        }
+
+        .btn-outline-light:hover {
+            background: var(--accent-gold);
+            color: rgb(0,0,53) !important;
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+         /* Footer */
+        .footer {
+            background: var(--primary-bg) !important;
+            border-top: 1px solid rgba(255,204,0,0.2);
+            padding: 3rem 0 1rem;
+            color: var(--text-white);
+        }
+
+        .footer h3 {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer p,
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .social-icons a {
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-gold);
+            transform: scale(1.2);
+        }
+
+        .subscribe-form {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255,204,0,0.2);
+        }
+
+        .form-control-custom {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,204,0,0.3);
+            color: var(--text-white);
+            border-radius: var(--border-radius);
+        }
+
+        .form-control-custom:focus {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 0.2rem rgba(255,204,0,0.25);
+            color: var(--text-white);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .animate-fade-in-up.animated {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 1;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-gold);
+            color: rgb(0,0,53);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(255,204,0,0.3);
+            display: none;
+        }
+
+        .back-to-top:hover {
+            background: #ffd700;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,204,0,0.4);
+        }
+         /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-brand img { height: 40px; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-brand img { height: 35px; }
+        }
+         /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: #28a745;
+            color: white;
+        }
+
+        .notification.error {
+            background: #dc3545;
+            color: white;
+        }
+
+        .notification .btn-close {
+            float: right;
+            color: white;
+            opacity: 0.7;
+        }
+         /* Updated Styles for Middle Sections */
+        .welcome, .faqs, .phone, .volunteers {
+            padding: 3rem 0;
+            background: var(--primary-bg);
+            margin-top: 100px;
+        }
+
+        .welcome {
+            text-align: center;
+            padding-top: 5rem;
+        }
+
+        .welcome h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .welcome p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-muted);
+        }
+
+        .faqs {
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--border-radius);
+        }
+
+        .faqs h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .accordion-button {
+            background: rgba(255,255,255,0.1) !important;
+            /* color: var(--text-white) !important; */
+            border: none;
+            border-radius: var(--border-radius) !important;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--accent-gold) !important;
+            color: rgb(0,0,53) !important;
+        }
+
+        .accordion-body {
+            background: rgba(255,255,255,0.05);
+            /* color: var(--text-muted); */
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+
+        .phone {
+            text-align: center;
+        }
+
+        .phone h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .phone .phone-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .phone-item {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255,204,0,0.2);
+            transition: var(--transition);
+        }
+
+        .phone-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(255,204,0,0.3);
+        }
+
+        .phone-item h4 {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .phone-item p {
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        .phone-item a {
+            color: var(--text-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .phone-item a:hover {
+            color: var(--accent-gold);
+        }
+
+        .volunteers {
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+        }
+
+        .volunteers h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .volunteers p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-muted);
+        }
+
+        .volunteers a {
+            color: var(--text-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .volunteers a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar-brand img { height: 40px; }
+            .welcome h2 { font-size: 2rem; }
+            .faqs h3, .phone h3, .volunteers h3 { font-size: 1.8rem; }
+            .phone .phone-container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-brand img { height: 35px; }
+            .welcome h2 { font-size: 1.8rem; }
+            .welcome p { font-size: 1rem; }
+            .faqs h3, .phone h3, .volunteers h3 { font-size: 1.6rem; }
+        }
+    </style>
+    </head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.jpg.png" alt="Festival Hub" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="category.html"><i class="fas fa-th me-1"></i>Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle me-1"></i>About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog me-1"></i>Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="help.html"><i class="fas fa-question-circle me-1"></i>Help</a></li>
+                    <li class="nav-item"><a class="nav-link" href="team.html"><i class="fas fa-users me-1"></i>Team</a></li>
+                </ul>
+                <div class="ms-3" style="display: flex;">
+                    <a href="buy.html" class="btn btn-primary-custom btn-sm me-2">
+                        <i class="fas fa-ticket-alt"></i> Buy Purchase
+                    </a>
+                     <a href="join.html" class="btn btn-primary-custom btn-sm me-2">
+                        <i class="fas fa-users"></i> Join Community
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="welcome">
+            <h2>Help & Support</h2>
+            <p>Welcome to the Festival Help Center!<br>
+            Here you'll find answers to frequently asked questions and useful information to make your festival experience smooth and enjoyable. If you still need help, don’t hesitate to contact us.</p>
+        </section>
+
+        <section class="faqs">
+            <h3>Frequently Asked Questions (FAQs)</h3>
+         <div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+       1. When and where is the festival happening?
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">The festival will take place on [Dates] at [Venue/Location]. Check the [Directions page / Google Map link] for more info.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+       2. How can I buy tickets?
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Tickets are available online on our [Tickets] page. Multiple payment options are accepted.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        3. Is an ID required for entry?
+    </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Yes, a valid government-issued ID is required for entry. Digital copies are accepted.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
+        4. Is the festival family-friendly?
+      </button>
+    </h2>
+    <div id="flush-collapsefour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Yes! We have dedicated family zones and activities suitable for kids and parents.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefive" aria-expanded="false" aria-controls="flush-collapsefive">
+        5. What about parking and transport?
+      </button>
+    </h2>
+    <div id="flush-collapsefive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Limited parking is available at the venue. We recommend using public transport. Shuttle services may be provided — check the [Transport Info] page.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsesix" aria-expanded="false" aria-controls="flush-collapseThree">
+        6. What if it rains or the weather is bad?
+      </button>
+    </h2>
+    <div id="flush-collapsesix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">The festival will take place rain or shine. Covered areas and weather precautions will be in place.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseseven" aria-expanded="false" aria-controls="flush-collapseThree">
+        7. How do I report or find lost items?
+      </button>
+    </h2>
+    <div id="flush-collapseseven" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Visit our Lost & Found booth at the venue or email us at [support@yourfestival.com
+] after the event.</div>
+    </div>
+  </div>
+</div>
+        </section>
+
+        <section class="phone">
+            <h3><i class="fa-solid fa-phone"></i> Need More Help?</h3>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: #ffffff;">If your question isn't listed above, feel free to contact us:</p>
+            <div class="phone">
+                <div class="phone-item">
+                    <h4><i class="fa-solid fa-envelope"></i> Email</h4>
+                    <p><a href="mailto:support@yourfestival.com">support@yourfestival.com</a></p>
+                </div>
+                <div class="phone-item">
+                    <h4><i class="fa-solid fa-mobile"></i>Phone/WhatsApp</h4>
+                    <p><a href="https://wa.me/+91XXXXXXXXXX" target="_blank">+91-XXXXXXXXXX</a></p>
+                </div>
+                <div class="phone-item">
+                    <h4><i class="fa-solid fa-globe"></i>Social Media</h4>
+                    <p>
+                        <a href="https://instagram.com/yourfestival" target="_blank">Instagram</a> | 
+                        <a href="https://facebook.com/yourfestival" target="_blank">Facebook</a> | 
+                        <a href="https://twitter.com/yourfestival" target="_blank">Twitter</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="volunteers">
+            <h3><i class="fa-solid fa-handshake"></i> For festa-flick</h3>
+            <p>Want to join us as a volunteer or vendor? Visit the <a href="index.html">Volunteer Page</a> for more details, or email us at: <a href="mailto:team@yourfesta-flick.com">team@yourfesta-flick.com</a></p>
+        </section>
+
+     <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up">
+                    <h3><i class="fas fa-fire me-2"></i>Festa-Flick</h3>
+                    <p>Connecting cultures through celebration. Discover, experience, and share the world's festivals.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook-f fs-5"></i></a>
+                        <a href="#"><i class="fab fa-twitter fs-5"></i></a>
+                        <a href="#"><i class="fab fa-instagram fs-5"></i></a>
+                        <a href="#"><i class="fab fa-youtube fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.1s">
+                    <h3>Categories</h3>
+                    <a href="categories.html" class="footer-link">Christian Festivals</a>
+                    <a href="categories.html" class="footer-link">Hindu Festivals</a>
+                    <a href="categories.html" class="footer-link">Muslim Festivals</a>
+                    <a href="categories.html" class="footer-link">Buddhist Festivals</a>
+                    <a href="categories.html" class="footer-link">Jewish Festivals</a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.2s">
+                    <h3>Explore</h3>
+                    <a href="gallery.html" class="footer-link">Gallery</a>
+                    <a href="blog.html" class="footer-link">Blog</a>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="help.html" class="footer-link">Contact</a>
+                    <a href="team.html" class="footer-link"> Our Team</a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.3s">
+                    <h3>Stay Connected</h3>
+                    <p class="small">Get festival updates, stories, and exclusive content.</p>
+                    <div class="subscribe-form">
+                        <div class="input-group">
+                            </div>
+                            <input type="email" class="form-control form-control-custom" placeholder="Your email" id="newsletterEmail">
+                            <button class="btn btn-primary-custom" type="button" id="subscribeBtn">
+                                <i class="fas fa-paper-plane me-1"></i>Subscribe
+                            </button>
+                        <div class="form-text mt-2">No spam, just festival magic!</div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,204,0,0.2);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Festa-Flick. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Loading screen
+            setTimeout(function() {
+                $('#loading').fadeOut(500);
+            }, 2000);
+
+            // Navbar scroll effect
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('.navbar').addClass('scrolled');
+                    $('#backToTop').fadeIn();
+                } else {
+                    $('.navbar').removeClass('scrolled');
+                    $('#backToTop').fadeOut();
+                }
+
+                // Animate on scroll
+                $('.animate-fade-in-up').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var elementVisible = 150;
+                    if ($(window).scrollTop() + $(window).height() > elementTop + elementVisible) {
+                        $(this).addClass('animated');
+                    }
+                });
+            });
+
+            // Smooth scrolling
+            $('a[href^="#"]').on('click', function(event) {
+                var target = $($(this).attr('href'));
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 90
+                    }, 1000, 'easeInOutQuad');
+                }
+            });
+
+            // Navbar active state
+            $('.navbar-nav .nav-link').on('click', function() {
+                $('.navbar-nav .nav-link').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            // Back to top
+            $('#backToTop').click(function() {
+                $('html, body').animate({scrollTop: 0}, 800);
+            });
+              // Subscription forms
+            function handleSubscription(formId, emailId, btnId) {
+                $(formId).on('submit', function(e) {
+                    e.preventDefault();
+                    var email = $(emailId).val().trim();
+                    
+                    if (!email || !isValidEmail(email)) {
+                        showNotification('Please enter a valid email address!', 'error');
+                        $(emailId).addClass('is-invalid');
+                        return;
+                    }
+
+                    var $btn = $(btnId);
+                    $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i>Subscribing...');
+                    $(emailId).removeClass('is-invalid');
+
+                    setTimeout(function() {
+                        $(emailId).val('');
+                        $btn.prop('disabled', false).html('<i class="fas fa-check me-1"></i>Subscribed!');
+                        showNotification('Welcome to Festa-Flick! 🎉 You\'re subscribed!', 'success');
+                        
+                        setTimeout(function() {
+                            $btn.html('<i class="fas fa-paper-plane me-1"></i>Subscribe');
+                        }, 2000);
+                    }, 1500);
+                });
+            }
+
+            handleSubscription('#subscriptionForm', '#subEmail', '#subscriptionForm button');
+            $('#subscribeBtn').click(function() {
+                var email = $('#newsletterEmail').val().trim();
+                if (email && isValidEmail(email)) {
+                    $('#newsletterEmail').val('');
+                    showNotification('Thank you for subscribing!', 'success');
+                } else {
+                    showNotification('Please enter a valid email!', 'error');
+                }
+            });
+
+            // Email validation
+            $('input[type="email"]').on('input', function() {
+                $(this).removeClass('is-invalid');
+            });
+
+            // Card hover effects
+            $('.card-custom, .story-card').hover(
+                function() {
+                    $(this).css('transform', 'translateY(-10px)');
+                },
+                function() {
+                    $(this).css('transform', 'translateY(0)');
+                }
+            );
+
+            // Window resize handler
+            $(window).resize(function() {
+                // Re-trigger scroll animations
+                $('.animate-fade-in-up').removeClass('animated');
+                animateOnScroll();
+            });
+
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            function showNotification(message, type) {
+                var notification = $(`
+                    <div class="notification ${type} show">
+                        <span>${message}</span>
+                        <button type="button" class="btn-close" onclick="$(this).parent().removeClass('show').fadeOut()">&times;</button>
+                    </div>
+                `);
+                $('body').append(notification);
+                
+                setTimeout(function() {
+                    notification.removeClass('show').fadeOut();
+                }, 5000);
+            }
+
+            // Initialize animations
+            function animateOnScroll() {
+                $('.animate-fade-in-up').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var elementVisible = 150;
+                    if ($(window).scrollTop() + $(window).height() > elementTop + elementVisible) {
+                        $(this).addClass('animated');
+                    }
+                });
+            }
+
+            $(window).scroll(animateOnScroll);
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>

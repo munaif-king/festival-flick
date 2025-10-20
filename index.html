@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festa-Flick</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        .btn-outline-light {
+            color: var(--text-white) !important;
+            border-color: var(--text-white);
+            transition: var(--transition);
+        }
+
+        .btn-outline-light:hover {
+            background: var(--accent-gold);
+            color: rgb(0,0,53) !important;
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+        .festival-alive{
+            text-align: center;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-bg) 0%,);
+            padding: 140px 0 100px;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-white);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Cards */
+        .card-custom {
+            background: var(--primary-bg);
+            border: 1px solid rgba(255,204,0,0.2);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            color: var(--text-white);
+            height: 100%;
+        }
+
+        .card-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gold);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .card-custom:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-custom:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-gold);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            width: 100%;
+        }
+
+        .card-custom:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            color: var(--text-white);
+        }
+
+        .card-title {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            color: var(--text-muted);
+            flex-grow: 1;
+        }
+
+        .btn-outline-warning {
+            color: var(--accent-gold) !important;
+            border-color: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .btn-outline-warning:hover {
+            background: var(--accent-gold);
+            color: rgb(0,0,53) !important;
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        /* Celebrate Story */
+        .celebrate-story {
+            padding: 80px 0;
+            background: var(--secondary-bg);
+            text-align: center;
+        }
+
+        .celebrate-story h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 3rem;
+            color: var(--text-white);
+        }
+
+        .story-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .story-card {
+            background: var(--primary-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid rgba(255,204,0,0.2);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: var(--shadow);
+        }
+
+        .spotlight {
+            background: rgb(87,104,204);
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .spotlight h3 {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .spotlight p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .explore-btn {
+            background: var(--accent-gold);
+            color: rgb(0,0,53) !important;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .explore-btn:hover {
+            background: rgb(87,104,204);
+            color: rgb(0,0,53) !important;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        .gallery-pick {
+            padding: 2rem;
+            background-color: rgb(87,104,204);
+        }
+
+        .gallery-pick img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .gallery-pick h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Subscription */
+        .subscription {
+            padding: 80px 0;
+            background: var(--primary-bg);
+            text-align: center;
+        }
+
+        .subscription-section {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .subscription-form {
+            background: var(--secondary-bg);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255,204,0,0.2);
+        }
+
+        .subscription h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 1rem;
+            color: var(--text-white);
+        }
+
+        .subscription p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .subscription input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255,204,0,0.3);
+            border-radius: var(--border-radius);
+            background: rgba(255,255,255,0.05);
+            color: var(--text-white);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .subscription input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .subscription input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 0.2rem rgba(255,204,0,0.25);
+        }
+
+        .subscription button {
+            background: var(--accent-gold);
+            color: rgb(0,0,53) !important;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            width: 100%;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .subscription button:hover {
+            background:rgb(87,104,204);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-bg) !important;
+            border-top: 1px solid rgba(255,204,0,0.2);
+            padding: 3rem 0 1rem;
+            color: var(--text-white);
+        }
+
+        .footer h3 {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer p,
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .social-icons a {
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-gold);
+            transform: scale(1.2);
+        }
+
+        .subscribe-form {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255,204,0,0.2);
+        }
+
+        .form-control-custom {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,204,0,0.3);
+            color: var(--text-white);
+            border-radius: var(--border-radius);
+        }
+
+        .form-control-custom:focus {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 0.2rem rgba(255,204,0,0.25);
+            color: var(--text-white);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .animate-fade-in-up.animated {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 1;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-gold);
+            color: rgb(0,0,53);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(255,204,0,0.3);
+            display: none;
+        }
+
+        .back-to-top:hover {
+            background:rgb(87,104,204);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,204,0,0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { padding: 120px 0 80px; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .navbar-brand img { height: 40px; }
+            .story-cards { grid-template-columns: 1fr; }
+            section { padding: 60px 0; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-brand img { height: 35px; }
+            .hero { padding: 100px 0 60px; }
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: #28a745;
+            color: white;
+        }
+
+        .notification.error {
+            background: #dc3545;
+            color: white;
+        }
+
+        .notification .btn-close {
+            float: right;
+            color: white;
+            opacity: 0.7;
+        }
+        .story-card{
+            background-color:  rgb(87,104,204);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.jpg.png" alt="Festa-Flick" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="categories.html"><i class="fas fa-th me-1"></i>Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle me-1"></i>About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog me-1"></i>Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="help.html"><i class="fas fa-question-circle me-1"></i>Help</a></li>
+                    <li class="nav-item"><a class="nav-link" href="team.html"><i class="fas fa-users me-1"></i>Team</a></li>
+                </ul>
+                <div class="ms-3 d-flex">
+                    <a href="buy.html" class="btn btn-primary-custom btn-sm me-2 ">
+                        <i class="fas fa-ticket-alt"></i> Buy Purchase
+                    </a>
+                    <a href="join.html" class="btn btn-primary-custom btn-sm">
+                        <i class="fas fa-users"></i> Join Community
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center hero-content animate-fade-in-up">
+                    <h1 class="display-4 fw-bold">Celebrate Every Culture</h1>
+                    <p class="lead">Step into a world of vibrant festivals, rich traditions, and unforgettable moments. Discover the meaning behind each celebration, explore beautiful images, and find upcoming dates. Join a global community and make every festival your own.</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                        <a href="discover.html" class="btn btn-primary-custom btn-lg">
+                            <i class="fas fa-search"></i> Discover Festivals
+                        </a>
+                        <a href="gallery.html" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-images"></i> View Gallery
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section class="festival-alive">
+            <h2>Where every festival comes alive</h2>
+            <p>Step into a world of celebration. Explore vibrant traditions, discover the stories behind global festivals, and find inspiration for your next cultural journey. From ancient rituals to modern gatherings, let's connect through the joy of festivals together.</p>
+            <div class="full-image">
+                <!-- <img src="images/hero.jpg.jpeg" alt="Festival gathering"> -->
+            </div>
+        </section>
+
+    <!-- Features Section -->
+    <section id="discover" class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto animate-fade-in-up">
+                    <h2 class="display-5 fw-bold mb-3">Experience Festivals Like Never Before</h2>
+                    <p class="text-muted">Immerse yourself in the colors, sounds, and stories of global celebrations</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-custom h-100 animate-fade-in-up" style="animation-delay: 0.1s">
+                        <img src="images/card1.jpeg" class="card-img-top" alt="Cultural Traditions">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fas fa-heart me-2"></i>Cultural Traditions</h5>
+                            <p class="card-text flex-grow-1">Uncover the deep stories and customs that make each festival uniquely special.</p>
+                            <a href="explore.html" class="btn btn-outline-warning mt-auto">
+                                <i class="fas fa-arrow-right"></i> Explore More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-custom h-100 animate-fade-in-up" style="animation-delay: 0.2s">
+                        <img src="images/hero.jpg.jpeg" class="card-img-top" alt="Festival Dates">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fas fa-calendar-alt me-2"></i>Dates & Significance</h5>
+                            <p class="card-text flex-grow-1">Learn about important dates and the profound meanings behind each celebration.</p>
+                            <a href="discover.html" class="btn btn-outline-warning mt-auto">
+                                <i class="fas fa-calendar"></i> Discover
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-custom h-100 animate-fade-in-up" style="animation-delay: 0.3s">
+                        <img src="images/gallery img10.jpg" class="card-img-top" alt="Highlights">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fas fa-star me-2"></i>Festival Highlights</h5>
+                            <p class="card-text flex-grow-1">Experience breathtaking moments and vibrant imagery from festivals worldwide.</p>
+                            <a href="#" class="btn btn-outline-warning mt-auto">
+                                <i class="fas fa-images"></i> Browse Gallery
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Celebrate Story -->
+    <section class="celebrate-story">
+        <div class="container">
+            <h2 class="animate-fade-in-up">Celebrate every story, every culture</h2>
+            <div class="story-cards">
+                <div class="story-card animate-fade-in-up" style="animation-delay: 0.1s">
+                    <div class="spotlight">
+                        <h3><i class="fas fa-spotlight me-2"></i>Spotlight Festival</h3>
+                        <p>Uncover global celebrations. Discover the meaning, history, and vibrant images behind beloved festivals. Find dates, stories, and inspiration for your next celebration.</p>
+                        <a class="explore-btn" href="explore.html">
+                            <i class="fas fa-rocket me-2"></i>Explore Now
+                        </a>
+                    </div>
+                </div>
+                <div class="story-card animate-fade-in-up" style="animation-delay: 0.2s">
+                    <div class="gallery-pick">
+                        <h3><i class="fas fa-image me-2"></i>Gallery Pick</h3>
+                        <p>See festival highlights from every corner of the world. Relive the color, joy, and spirit that unite us all.</p>
+                         <a class="explore-btn" href="gallery.html">
+                            <i class="fas fa-rocket me-2"></i>click now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription -->
+    <section class="subscription">
+        <div class="container">
+            <div class="subscription-section animate-fade-in-up">
+                <div class="subscription-form">
+                    <h2>Celebrate every festival, everywhere</h2>
+                    <p>Be the first to discover new festivals, stories, and traditions from every corner of the globe. Join our vibrant community for exclusive updates, inspiration, and a front-row seat to the world's most colorful celebrations—delivered right to your inbox.</p>
+                    <form id="subscriptionForm">
+                        <input type="email" id="subEmail" class="form-control form-control-custom" placeholder="Enter your email" required>
+                        <button type="submit" class="btn btn-primary-custom">
+                            <i class="fas fa-paper-plane me-2"></i>Subscribe Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up">
+                    <h3><i class="fas fa-fire me-2"></i>Festa-Flick</h3>
+                    <p>Connecting cultures through celebration. Discover, experience, and share the world's festivals.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook-f fs-5"></i></a>
+                        <a href="#"><i class="fab fa-twitter fs-5"></i></a>
+                        <a href="#"><i class="fab fa-instagram fs-5"></i></a>
+                        <a href="#"><i class="fab fa-youtube fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.1s">
+                    <h3>Categories</h3>
+                    <a href="categories.html" class="footer-link">Christian Festivals</a>
+                    <a href="categories.html" class="footer-link">Hindu Festivals</a>
+                    <a href="categories.html" class="footer-link">Muslim Festivals</a>
+                    <a href="categories.html" class="footer-link">Buddhist Festivals</a>
+                    <a href="categories.html" class="footer-link">Jewish Festivals</a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.2s">
+                    <h3>Explore</h3>
+                    <a href="gallery.html" class="footer-link">Gallery</a>
+                    <a href="blog.html" class="footer-link">Blog</a>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="help.html" class="footer-link">Contact</a>
+                    <a href="team.html" class="footer-link"> Our Team</a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.3s">
+                    <h3>Stay Connected</h3>
+                    <p class="small">Get festival updates, stories, and exclusive content.</p>
+                    <div class="subscribe-form">
+                        <div class="input-group">
+                            </div>
+                            <input type="email" class="form-control form-control-custom" placeholder="Your email" id="newsletterEmail">
+                            <button class="btn btn-primary-custom" type="button" id="subscribeBtn">
+                                <i class="fas fa-paper-plane me-1"></i>Subscribe
+                            </button>
+                        <div class="form-text mt-2">No spam, just festival magic!</div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,204,0,0.2);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Festa-Flick. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Loading screen
+            setTimeout(function() {
+                $('#loading').fadeOut(500);
+            }, 2000);
+
+            // Navbar scroll effect
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('.navbar').addClass('scrolled');
+                    $('#backToTop').fadeIn();
+                } else {
+                    $('.navbar').removeClass('scrolled');
+                    $('#backToTop').fadeOut();
+                }
+
+                // Animate on scroll
+                $('.animate-fade-in-up').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var elementVisible = 150;
+                    if ($(window).scrollTop() + $(window).height() > elementTop + elementVisible) {
+                        $(this).addClass('animated');
+                    }
+                });
+            });
+
+            // Smooth scrolling
+            $('a[href^="#"]').on('click', function(event) {
+                var target = $($(this).attr('href'));
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 90
+                    }, 1000, 'easeInOutQuad');
+                }
+            });
+
+            // Navbar active state
+            $('.navbar-nav .nav-link').on('click', function() {
+                $('.navbar-nav .nav-link').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            // Back to top
+            $('#backToTop').click(function() {
+                $('html, body').animate({scrollTop: 0}, 800);
+            });
+
+            // Subscription forms
+            function handleSubscription(formId, emailId, btnId) {
+                $(formId).on('submit', function(e) {
+                    e.preventDefault();
+                    var email = $(emailId).val().trim();
+                    
+                    if (!email || !isValidEmail(email)) {
+                        showNotification('Please enter a valid email address!', 'error');
+                        $(emailId).addClass('is-invalid');
+                        return;
+                    }
+
+                    var $btn = $(btnId);
+                    $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i>Subscribing...');
+                    $(emailId).removeClass('is-invalid');
+
+                    setTimeout(function() {
+                        $(emailId).val('');
+                        $btn.prop('disabled', false).html('<i class="fas fa-check me-1"></i>Subscribed!');
+                        showNotification('Welcome to Festa-Flick! 🎉 You\'re subscribed!', 'success');
+                        
+                        setTimeout(function() {
+                            $btn.html('<i class="fas fa-paper-plane me-1"></i>Subscribe');
+                        }, 2000);
+                    }, 1500);
+                });
+            }
+
+            handleSubscription('#subscriptionForm', '#subEmail', '#subscriptionForm button');
+            $('#subscribeBtn').click(function() {
+                var email = $('#newsletterEmail').val().trim();
+                if (email && isValidEmail(email)) {
+                    $('#newsletterEmail').val('');
+                    showNotification('Thank you for subscribing!', 'success');
+                } else {
+                    showNotification('Please enter a valid email!', 'error');
+                }
+            });
+
+            // Email validation
+            $('input[type="email"]').on('input', function() {
+                $(this).removeClass('is-invalid');
+            });
+
+            // Card hover effects
+            $('.card-custom, .story-card').hover(
+                function() {
+                    $(this).css('transform', 'translateY(-10px)');
+                },
+                function() {
+                    $(this).css('transform', 'translateY(0)');
+                }
+            );
+
+            // Window resize handler
+            $(window).resize(function() {
+                // Re-trigger scroll animations
+                $('.animate-fade-in-up').removeClass('animated');
+                animateOnScroll();
+            });
+
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            function showNotification(message, type) {
+                var notification = $(`
+                    <div class="notification ${type} show">
+                        <span>${message}</span>
+                        <button type="button" class="btn-close" onclick="$(this).parent().removeClass('show').fadeOut()">&times;</button>
+                    </div>
+                `);
+                $('body').append(notification);
+                
+                setTimeout(function() {
+                    notification.removeClass('show').fadeOut();
+                }, 5000);
+            }
+
+            // Initialize animations
+            function animateOnScroll() {
+                $('.animate-fade-in-up').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var elementVisible = 150;
+                    if ($(window).scrollTop() + $(window).height() > elementTop + elementVisible) {
+                        $(this).addClass('animated');
+                    }
+                });
+            }
+
+            $(window).scroll(animateOnScroll);
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>

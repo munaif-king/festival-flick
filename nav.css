@@ -1,0 +1,186 @@
+ :root {
+            --primary-bg: rgb(87,104,174);
+            --secondary-bg: rgb(87,104,174);
+            --accent-gold:#82c0cf;
+            --text-white: #ffffff;
+            --text-muted: #cccccc;
+            --shadow: 0 10px 30px rgba(0,0,0,0.5);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,204,0,0.2);
+            border-top: 4px solid var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        .navbar {
+            background:rgb(87,104,174) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,204,0,0.2);
+            padding: 1rem 0;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .navbar.scrolled {
+            background:rgb(87,104,174) !important;
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .navbar-brand img {
+            height: 50px;
+            transition: var(--transition);
+            filter: brightness(0) invert(1);
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+            filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(40deg);
+        }
+
+        .nav-link {
+            color: var(--text-white) !important;
+            font-weight: 500;
+            position: relative;
+            margin: 0 1rem;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-gold) !important;
+        }
+
+        .btn-primary-custom {
+            background:  #82c0cf;
+            border: none;
+            color: rgb(0,0,53) !important;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255,204,0,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary-custom:hover {
+            background: rgb(87,104,174);
+            color: rgb(0,0,53) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,204,0,0.4);
+            text-decoration: none;
+        }
+         @media (max-width: 992px) {
+            .spirit-joy, .vision {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .bl-text {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .te-blog {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .spirit, .blog-text, .our-vision {
+                padding: 60px 0;
+            }
+            
+            .spirit-content h2, .our-para h2 {
+                font-size: 2rem;
+            }
+            
+            .navbar-brand img {
+                height: 40px;
+            }
+            
+            .nav-link {
+                margin: 0 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .btn-primary-custom {
+                padding: 0.5rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .te-blog {
+                padding: 1.5rem;
+            }
+            
+            .spirit-img img, .our-img img {
+                height: 250px;
+            }
+            
+            .navbar-brand img {
+                height: 35px;
+            }
+        }
