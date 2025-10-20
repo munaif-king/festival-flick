@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festa-Flick - Join Community</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="nav.css">
+    <style>
+        /* Main Content */
+        .main-content {
+            padding: 120px 0 80px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .join-hero {
+            background: rgba(0,0,80,0.3);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255,204,0,0.2);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .join-hero h1 {
+            color: var(--accent-gold);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .join-hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Join Section */
+        .join-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .left-section {
+            background: rgba(0,0,80,0.3);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            border: 1px solid rgba(255,204,0,0.2);
+            height: fit-content;
+            backdrop-filter: blur(10px);
+        }
+
+        .left-section h2 {
+            color: var(--accent-gold);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .right-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .join-image {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 3px solid rgba(255,204,0,0.2);
+        }
+
+        .join-image:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(255,204,0,0.3);
+        }
+
+        .description {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin: 2rem 0;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        /* Google Button */
+        .google-btn {
+            width: 100%;
+            background:#82c0cf;
+            color: #333;
+            border: none;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .google-btn:hover {
+            background: rgb(87,104,174);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .google-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Separator */
+        .separator {
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--text-muted);
+            position: relative;
+        }
+
+        .separator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255,204,0,0.2);
+            z-index: 1;
+        }
+
+        .separator span {
+            background: rgba(0,0,80,0.8);
+            padding: 0 1rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Form Styling */
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .signup-form input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,204,0,0.3);
+            color: var(--text-white);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .signup-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .signup-form input:focus {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 0.2rem rgba(255,204,0,0.25);
+            outline: none;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: auto;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,204,0,0.3);
+        }
+
+        .create-account-btn {
+            background: var(--accent-gold);
+            color: rgb(0,0,53);
+            border: none;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .create-account-btn:hover {
+            background: rgb(87,104,174);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,204,0,0.4);
+        }
+
+        .create-account-btn:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .signup-link {
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+        }
+
+        .signup-link a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-bg) !important;
+            border-top: 1px solid rgba(255,204,0,0.2);
+            padding: 3rem 0 1rem;
+            color: var(--text-white);
+            margin-top: auto;
+        }
+
+        .footer h3 {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer p,
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+          .subscribe-form {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255,204,0,0.2);
+        }
+
+        .form-control-custom {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,204,0,0.3);
+            color: var(--text-white);
+            border-radius: var(--border-radius);
+        }
+
+        .form-control-custom:focus {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 0.2rem rgba(255,204,0,0.25);
+            color: var(--text-white);
+        }
+
+
+        .footer-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .social-icons a {
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-gold);
+            transform: scale(1.2);
+        }
+
+        .subscribe-form {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255,204,0,0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .animate-fade-in-up.animated {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 1;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-gold);
+            color: rgb(0,0,53);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(255,204,0,0.3);
+            display: none;
+        }
+
+        .back-to-top:hover {
+            background: rgb(87,104,174);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,204,0,0.4);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            z-index: 10001;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+            box-shadow: var(--shadow);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success { background: #28a745; color: white; }
+        .notification.error { background: #dc3545; color: white; }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .join-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .right-section {
+                order: -1;
+            }
+            
+            .join-image {
+                max-width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 100px 0 60px;
+            }
+            
+            .join-hero {
+                padding: 2rem 1rem;
+            }
+            
+            .join-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .left-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .left-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .join-image {
+                max-width: 250px;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                height: 40px;
+            }
+            
+            .main-content {
+                padding: 80px 0 40px;
+            }
+            
+            .join-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .left-section {
+                padding: 1.5rem;
+            }
+            
+            .join-image {
+                max-width: 200px;
+                height: 200px;
+            }
+        }
+
+        /* Form Validation States */
+        .form-control.is-invalid {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+        }
+
+        .form-control.is-valid {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.jpg.png" alt="Festa-Flick" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="categories.html"><i class="fas fa-th me-1"></i>Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle me-1"></i>About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog me-1"></i>Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="help.html"><i class="fas fa-question-circle me-1"></i>Help</a></li>
+                    <li class="nav-item"><a class="nav-link" href="team.html"><i class="fas fa-users me-1"></i>Team</a></li>
+                </ul>
+                <div class="ms-3 d-flex">
+                    <a href="buy.html" class="btn btn-primary-custom btn-sm me-2">
+                        <i class="fas fa-ticket-alt"></i> Buy Purchase
+                    </a>
+                    <a href="join.html" class="btn btn-primary-custom btn-sm ">
+                        <i class="fas fa-users"></i> Join Community
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div class="join-hero animate-fade-in-up">
+            <h1><i class="fas fa-users me-2"></i>Join Our Community</h1>
+            <p>Connect with festival lovers worldwide and be part of the celebration!</p>
+        </div>
+
+        <section class="join-section animate-fade-in-up">
+            <div class="left-section">
+                <h2><i class="fas fa-user-plus me-2"></i>Create Your Account</h2>
+                <button class="google-btn">
+                    <img src="https://www.google.com/favicon.ico" alt="Google Icon" class="google-icon">
+                    Sign up with Google
+                </button>
+                <div class="separator"><span>or</span></div>
+                <form class="signup-form" id="signupForm">
+                    <input type="text" placeholder="First & Last Name (i.e. Davon Lean)" required>
+                    <input type="email" placeholder="Email Address (i.e. davon@email.com)" required>
+                    <input type="password" placeholder="Password" required>
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <button type="submit" class="create-account-btn">
+                        <i class="fas fa-user-plus me-1"></i>Create Account
+                    </button>
+                </form>
+                <p class="signup-link">Don't have an account? <a href="#">Create free account</a></p>
+            </div>
+            
+            <div class="right-section">
+                <img src="images/join.jfif" alt="Join Community" class="join-image">
+                <p class="description">Clarity gives you the blocks and components you need to create a truly professional website.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up">
+                    <h3><i class="fas fa-fire me-2"></i>Festa-Flick</h3>
+                    <p>Connecting cultures through celebration. Discover, experience, and share the world's festivals.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook-f fs-5"></i></a>
+                        <a href="#"><i class="fab fa-twitter fs-5"></i></a>
+                        <a href="#"><i class="fab fa-instagram fs-5"></i></a>
+                        <a href="#"><i class="fab fa-youtube fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.1s">
+                    <h3>Categories</h3>
+                    <a href="categories.html" class="footer-link">Christian Festivals</a>
+                    <a href="categories.html" class="footer-link">Hindu Festivals</a>
+                    <a href="categories.html" class="footer-link">Muslim Festivals</a>
+                    <a href="categories.html" class="footer-link">Buddhist Festivals</a>
+                    <a href="categories.html" class="footer-link">Jewish Festivals</a>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.2s">
+                    <h3>Explore</h3>
+                    <a href="gallery.html" class="footer-link">Gallery</a>
+                    <a href="blog.html" class="footer-link">Blog</a>
+                    <a href="about.html" class="footer-link">About Us</a>
+                    <a href="help.html" class="footer-link">Contact</a>
+                    <a href="team.html" class="footer-link">Our Team</a>
+                </div>
+                 <div class="col-lg-3 col-md-6 mb-4 animate-fade-in-up" style="animation-delay: 0.3s">
+                    <h3>Stay Connected</h3>
+                    <p class="small">Get festival updates, stories, and exclusive content.</p>
+                    <div class="subscribe-form">
+                        <div class="input-group">
+                            </div>
+                            <input type="email" class="form-control form-control-custom" placeholder="Your email" id="newsletterEmail">
+                            <button class="btn btn-primary-custom" type="button" id="subscribeBtn">
+                                <i class="fas fa-paper-plane me-1"></i>Subscribe
+                            </button>
+                        <div class="form-text mt-2">No spam, just festival magic!</div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,204,0,0.2);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Festa-Flick. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        (function($, window, document) {
+            'use strict';
+
+            // Configuration
+            const CONFIG = {
+                loadingTime: 2000,
+                animationDelay: 100,
+                passwordMinLength: 6
+            };
+
+            // DOM Elements
+            const elements = {
+                loading: '#loading',
+                backToTop: '#backToTop',
+                signupForm: '#signupForm',
+                subscribeBtn: '#subscribeBtn',
+                newsletterEmail: '#newsletterEmail'
+            };
+
+            // Initialize app
+            function init() {
+                hideLoadingScreen();
+                initEventListeners();
+                initScrollEffects();
+                initAnimations();
+                initNewsletter();
+                initFormValidation();
+            }
+
+            // Loading screen
+            function hideLoadingScreen() {
+                setTimeout(() => {
+                    $(elements.loading).fadeOut(500);
+                }, CONFIG.loadingTime);
+            }
+
+            // Form handling
+            function initFormValidation() {
+                const $form = $(elements.signupForm);
+                const $inputs = $form.find('input[required]');
+                let isFormValid = false;
+
+                // Real-time validation
+                $inputs.on('input blur', function() {
+                    const $input = $(this);
+                    const value = $input.val().trim();
+                    const type = $input.attr('type');
+                    let isValid = true;
+
+                    // Clear previous validation
+                    $input.removeClass('is-invalid is-valid');
+
+                    // Name validation
+                    if ($input.attr('placeholder').includes('First & Last Name')) {
+                        isValid = value.length >= 2 && value.split(' ').length >= 2;
+                    }
+                    // Email validation
+                    else if (type === 'email') {
+                        isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                    }
+                    // Password validation
+                    else if (type === 'password') {
+                        isValid = value.length >= CONFIG.passwordMinLength;
+                    }
+
+                    // Apply validation classes
+                    if (value && isValid) {
+                        $input.addClass('is-valid');
+                    } else if (value && !isValid) {
+                        $input.addClass('is-invalid');
+                    }
+
+                    checkFormValidity();
+                });
+
+                function checkFormValidity() {
+                    isFormValid = $inputs.length === $inputs.filter('.is-valid').length;
+                    $form.find('.create-account-btn').prop('disabled', !isFormValid);
+                }
+
+                // Form submission
+                $form.on('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (isFormValid) {
+                        const $btn = $form.find('.create-account-btn');
+                        const originalText = $btn.html();
+                        
+                        $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i>Creating Account...');
+                        
+                        // Simulate API call
+                        setTimeout(() => {
+                            showNotification('Account created successfully! 🎉 Welcome to Festa-Flick!', 'success');
+                            $form[0].reset();
+                            $inputs.removeClass('is-valid is-invalid');
+                            $btn.prop('disabled', false).html(originalText);
+                        }, 2000);
+                    } else {
+                        showNotification('Please fill all fields correctly', 'error');
+                    }
+                });
+            }
+
+            // Google sign up simulation
+            function initGoogleSignUp() {
+                $('.google-btn').on('click', function() {
+                    const $btn = $(this);
+                    const originalText = $btn.html();
+                    
+                    $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i>Signing in with Google...');
+                    
+                    setTimeout(() => {
+                        showNotification('Google sign up successful! Welcome aboard!', 'success');
+                        $btn.prop('disabled', false).html(originalText);
+                    }, 2000);
+                });
+            }
+
+            // Newsletter subscription
+            function initNewsletter() {
+                $(elements.subscribeBtn).on('click', function() {
+                    const email = $(elements.newsletterEmail).val().trim();
+                    if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        $(elements.newsletterEmail).val('').removeClass('is-invalid is-valid');
+                        showNotification('Thank you for subscribing to festival updates!', 'success');
+                    } else {
+                        $(elements.newsletterEmail).addClass('is-invalid');
+                        showNotification('Please enter a valid email address!', 'error');
+                    }
+                });
+
+                $(elements.newsletterEmail).on('input', function() {
+                    $(this).removeClass('is-invalid');
+                    if ($(this).val().trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($(this).val().trim())) {
+                        $(this).addClass('is-valid');
+                    }
+                });
+            }
+
+            // Event listeners
+            function initEventListeners() {
+                initGoogleSignUp();
+                
+                // Back to top
+                $(elements.backToTop).on('click', function() {
+                    $('html, body').animate({scrollTop: 0}, 800);
+                });
+
+                // Navbar active state
+                $('.navbar-nav .nav-link').on('click', function() {
+                    $('.navbar-nav .nav-link').removeClass('active');
+                    $(this).addClass('active');
+                });
+
+                // Smooth scrolling for anchor links
+                $('a[href^="#"]').on('click', function(event) {
+                    var target = $($(this).attr('href'));
+                    if (target.length) {
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 90
+                        }, 1000, 'easeInOutQuad');
+                    }
+                });
+            }
+
+            // Scroll effects
+            function initScrollEffects() {
+                $(window).on('scroll', function() {
+                    const scrollTop = $(this).scrollTop();
+                    
+                    // Navbar scroll effect
+                    $('.navbar').toggleClass('scrolled', scrollTop > 100);
+                    $(elements.backToTop).toggle(scrollTop > 300);
+                    
+                    // Animate on scroll
+                    $('.animate-fade-in-up').each(function() {
+                        const elementTop = $(this).offset().top;
+                        const windowBottom = scrollTop + $(window).height();
+                        if (windowBottom > elementTop + 100 && !$(this).hasClass('animated')) {
+                            $(this).addClass('animated');
+                        }
+                    });
+                });
+            }
+
+            // Initialize animations
+            function initAnimations() {
+                $('.animate-fade-in-up').each(function(i) {
+                    $(this).css('animation-delay', i * CONFIG.animationDelay + 'ms');
+                });
+                
+                // Trigger initial animations
+                setTimeout(() => {
+                    $('.animate-fade-in-up').addClass('animated');
+                }, 500);
+            }
+
+            // Notification system
+            function showNotification(message, type = 'success') {
+                const $notification = $(`
+                    <div class="notification ${type} show">
+                        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'} me-2"></i>
+                        ${message}
+                        <button type="button" class="btn-close ms-3" style="color: white; opacity: 0.7; border: none; background: none; font-size: 1.2rem; cursor: pointer;">&times;</button>
+                    </div>
+                `);
+                
+                $('body').append($notification);
+                
+                $notification.find('.btn-close').on('click', function() {
+                    $notification.removeClass('show').fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                });
+                
+                setTimeout(() => {
+                    $notification.removeClass('show').fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                }, 5000);
+            }
+
+            // Password strength indicator
+            function initPasswordStrength() {
+                const $passwordInput = $('input[type="password"]');
+                $passwordInput.on('input', function() {
+                    const value = $(this).val();
+                    const strength = calculatePasswordStrength(value);
+                    const $parent = $(this).parent();
+                    
+                    $parent.find('.password-strength').remove();
+                    
+                    let strengthClass, text;
+                    if (strength < 30) {
+                        strengthClass = 'weak';
+                        text = 'Weak';
+                    } else if (strength < 60) {
+                        strengthClass = 'medium';
+                        text = 'Medium';
+                    } else {
+                        strengthClass = 'strong';
+                        text = 'Strong';
+                    }
+                    
+                    const $indicator = $(`
+                        <div class="password-strength ${strengthClass}" style="margin-top: 0.5rem; font-size: 0.9rem;">
+                            ${text} (${strength}%)
+                        </div>
+                    `);
+                    
+                    $(this).after($indicator);
+                });
+            }
+
+            function calculatePasswordStrength(password) {
+                let score = 0;
+                if (password.length >= 8) score += 20;
+                if (/[a-z]/.test(password)) score += 20;
+                if (/[A-Z]/.test(password)) score += 20;
+                if (/[0-9]/.test(password)) score += 20;
+                if (/[^A-Za-z0-9]/.test(password)) score += 20;
+                return Math.min(score, 100);
+            }
+
+            // Initialize password strength
+            initPasswordStrength();
+
+            // Window resize handler
+            $(window).on('resize', function() {
+                $('.animate-fade-in-up').removeClass('animated');
+                initAnimations();
+            });
+
+            // Initialize everything when DOM is ready
+            $(document).ready(init);
+
+        })(jQuery, window, document);
+    </script>
+</body>
+</html>
